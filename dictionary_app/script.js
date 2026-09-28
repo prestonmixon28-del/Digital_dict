@@ -7,8 +7,14 @@ fetch('https://api.dictionaryapi.dev/api/v2/entries/en/hello')
     return response.json();
   })
   .then(data => {
-    console.log(data);
+    if (data.entries.length === 0) {
+        console.log('word not found');
+    } else {
+        console.log('word:', data[0].word);
+        console.log('definintion', data[0].meanings[0].definitions[0].definition);
+        
+    }
   })
   .catch(error => {
-    console.error('Error:', error.message);
+    console.error('error', error.message);
   });
